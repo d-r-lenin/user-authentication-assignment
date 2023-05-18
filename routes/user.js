@@ -3,6 +3,10 @@ const express = require('express')
 const router = express.Router()
 
 const {
+    protect
+} = require('../controllers/middleware')
+
+const {
     signup,
     login,
     logout,
@@ -12,7 +16,8 @@ const {
 router
     .post('/signup', signup)
     .post('/login', login)
-    .get('/logout', logout)
-    .delete('/delete', deleteAccount)
+    // These routes are protected by the middleware function
+    .get('/logout', protect, logout)
+    .delete('/delete', protect, deleteAccount)
 
 module.exports = router;

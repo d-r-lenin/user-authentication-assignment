@@ -53,7 +53,7 @@ module.exports = {
                 throw new Error("All fields are required");
             }
 
-            const user = User.fineOne({ email: req.body.email });
+            const user = await User.findOne({ email: req.body.email });
             if (!user) {
                 throw new Error("User not found");
             }
@@ -68,7 +68,10 @@ module.exports = {
 
             res.cookie("x-auth-token", token, { httpOnly: true });
 
-            res.status(200).json({ message: "User logged in successfully" });
+            res.status(200).json({
+                message: "User logged in successfully. cookie 'x-auth-token is set. You can also set this token in Authorization header with value 'Bearer <token>'.",
+                token: token,
+            });
         } catch (err) {
             console.error(err);
             res.status(400).json({ message: err.message });

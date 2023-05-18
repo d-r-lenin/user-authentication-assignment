@@ -7,7 +7,13 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY || 'secret';
 module.exports = {
     protect: async (req, res, next) => {
         try{
-            const token = req.cookies['x-auth-token'];
+
+            // this is just to make sure that authorization header is not empty becoz if it is empty then split will throw error
+            if(!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) {
+                req.headers.authorization = ' ';
+            }
+
+            const token = req.cookies['x-auth-token'] || req.headers.authorization.split(' ')[1];
 
             if (!token) {
                 throw new Error("You need to login");
