@@ -13,6 +13,7 @@ This repo can be downloaded and used in any project for base user creation and a
 * Using MongoDB
 
 ## Links
-
+* Test link at [authme-i17v.onrender.com](https://authme-i17v.onrender.com/)
+* Postman Doc at [https://documenter.getpostman.com/view/17085865/2s93kz7RJQ](https://documenter.getpostman.com/view/17085865/2s93kz7RJQ)
 
 > **note:** This repo is created as a assignment to create signin, signup functionality in REST api. This is may not be sutable directly in your develepment .
