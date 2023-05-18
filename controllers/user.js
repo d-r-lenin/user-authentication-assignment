@@ -15,7 +15,7 @@ function generateToken(user) {
 module.exports = {
     signup: async (req, res) => {
         try {
-            console.log(req.body);
+            // console.log(req.body);
             if (!req.body.name || !req.body.email || !req.body.password || !req.body.confirmPassword) {
                 throw new Error("All fields are required");
             }
@@ -48,7 +48,7 @@ module.exports = {
 
     login: async (req, res) => {
         try {
-            console.log(req.body);
+            // console.log(req.body);
             if (!req.body.email || !req.body.password) {
                 throw new Error("All fields are required");
             }
@@ -80,7 +80,7 @@ module.exports = {
 
     deleteAccount: async (req, res) => {
         try {
-            console.log(req.user);
+            // console.log(req.user);
             if (!req.user.id) {
                 throw new Error("User not found");
             }

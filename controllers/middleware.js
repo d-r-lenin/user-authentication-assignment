@@ -5,6 +5,7 @@ const User = require('../models/user');
 const PRIVATE_KEY = process.env.PRIVATE_KEY || 'secret';
 
 module.exports = {
+    // this function will be used as middleware in routes to prevent unauthorized access
     protect: async (req, res, next) => {
         try{
 
