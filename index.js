@@ -58,8 +58,14 @@ app.get('/api',protect,(req,res)=>{
     res.status(200).json({
         message: `Hello ${req.user.name}. This Page is personal to you.`,
         links:{
-            logout: `http://${hostname}/user/logout`,
-            delete: `http://${hostname}/user/delete`,
+            logout: {
+                url:`http://${hostname}/user/logout`,
+                method: "GET"
+            },
+            delete: {
+                url:`http://${hostname}/user/delete`,
+                method: "DELETE"
+            }
         }
     })
 })
