@@ -12,8 +12,6 @@ const connectDB = async () => {
         console.log('MongoDB connected');
     } catch (err) {
         console.error(err.message);
-        // reconnection in 12 seconds
-        setTimeout(() => connectDB() , 12000)
     }
 }
 
