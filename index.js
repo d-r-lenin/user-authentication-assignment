@@ -26,11 +26,28 @@ app.get('/', (req, res) => {
         note: "You need to be logged in to access '/api', '/delete' and '/logout' endpoints." ,
         protectedEndpoints: ['/delete', '/logout', '/api'],
         links:{
-            signup: `http://${hostname}/user/signup`,
-            login: `http://${hostname}/user/login`,
-            logout: `http://${hostname}/user/logout`,
-            delete: `http://${hostname}/user/delete`,
-            api: `http://${hostname}/api`,
+            signup: {
+                url: `http://${hostname}/user/signup`,
+                method: "POST",
+                body:['name','email','password', 'confirmPassword']
+            } ,
+            login: {
+                url: `http://${hostname}/user/login`,
+                method: "POST",
+                body:["email", "password"]
+            },
+            logout: {
+                url :`http://${hostname}/user/logout`,
+                method: "GET"
+            },
+            delete: { 
+                url: `http://${hostname}/user/delete`,
+                method: "DELETE"
+            },
+            api: {
+                url:`http://${hostname}/api`,
+                method: "GET"
+            }
         }
     });
 })
