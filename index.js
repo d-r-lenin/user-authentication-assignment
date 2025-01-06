@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 const userRouter = require('./routes/user');
 const { protect, protectWithApiKey } = require('./controllers/middleware');
+const { getMyProfile } = require('./controllers/user');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +20,7 @@ app.use(cookieParser())
 app.use("*", protectWithApiKey);
 
 app.use('/user',userRouter);
+app.use('/api/getme',protect, getMyProfile);
 
 
 app.get('/', (req, res) => {

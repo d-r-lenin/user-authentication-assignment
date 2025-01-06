@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const PRIVATE_KEY = process.env.PRIVATE_KEY || 'secret';
 
 const User = require('../models/user');
+const { get } = require('mongoose');
 
 // to generate jwt token from user id
 function generateToken(user) {
@@ -110,4 +111,19 @@ module.exports = {
             res.status(400).json({ message: err.message });
         }
     },
+
+    getMyProfile: async (req, res) => {
+        try {
+            if (!req.user) {
+                throw new Error("User not found");
+            }
+
+            res.status(200).json(req.user);
+        } catch (err) {
+            console.error(err);
+            res.status(400).json({ message: err.message });
+        }
+    }
+
+
 };
