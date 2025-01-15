@@ -14,7 +14,6 @@ const {
 } = require('../controllers/user')
 
 router
-    
     .post('/signup', signup)
     .post('/login', login)
     // These routes are protected by the middleware function

@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const PRIVATE_KEY = process.env.PRIVATE_KEY || 'secret';
 
 const User = require('../models/user');
-const { get } = require('mongoose');
 
 // to generate jwt token from user id
 function generateToken(user) {
@@ -40,7 +39,7 @@ module.exports = {
 
             res.cookie("x-auth-token", token, { httpOnly: true });
 
-            res.status(201).json({ message: "User created successfully", token ,user_id: user.id, user_email: user.email });
+            res.status(201).json({ message: "User created successfully" });
         } catch (err) {
             console.error(err);
             res.status(400).json({ message: err.message });
@@ -72,9 +71,6 @@ module.exports = {
             res.status(200).json({
                 message: "User logged in successfully. cookie 'x-auth-token is set. You can also set this token in Authorization header with value 'Bearer <token>'.",
                 token: token,
-                user_id: user.id,
-                user_email: user.email,
-
             });
         } catch (err) {
             console.error(err);
@@ -114,19 +110,4 @@ module.exports = {
             res.status(400).json({ message: err.message });
         }
     },
-
-    getMyProfile: async (req, res) => {
-        try {
-            if (!req.user) {
-                throw new Error("User not found");
-            }
-
-            res.status(200).json(req.user);
-        } catch (err) {
-            console.error(err);
-            res.status(400).json({ message: err.message });
-        }
-    }
-
-
 };
