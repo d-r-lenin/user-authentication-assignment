@@ -5,22 +5,9 @@ const User = require('../models/user');
 const PRIVATE_KEY = process.env.PRIVATE_KEY || 'secret';
 
 module.exports = {
-
-    protectWithApiKey :(req,res, next)=>{
-        console.log('Time:', Date.now());
-        if(process.env.API_KEY && (req.headers["api-key"] === process.env.API_KEY)){
-            next()
-        }else{
-             res.status(401).json({message: 'Unauthorized. please provide api-key'})
-         }
-     },
-
-
     // this function will be used as middleware in routes to prevent unauthorized access
     protect: async (req, res, next) => {
         try{
-
-            
 
             // this is just to make sure that authorization header is not empty becoz if it is empty then split will throw error
             if(!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) {
