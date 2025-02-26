@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.richardlenin.adopaw",
+    "sha256_cert_fingerprints":
+    ["C3:85:86:01:A2:3F:27:4E:9A:52:74:41:48:F9:42:3C:CD:75:0A:B5:8A:B3:57:81:2B:AA:92:72:77:A1:74:3A"]
+  }
+}]
