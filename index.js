@@ -18,7 +18,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
 app.get("/.well-known/assetlinks.json", (req, res) => {
-    res.status(200).sendFile(__dirname + "/.well-known/assetlinks.json");
+    res.status(200).send([{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+          "namespace": "android_app",
+          "package_name": "com.richardlenin.adopaw",
+          "sha256_cert_fingerprints":
+          ["7D:BD:10:0C:FA:7A:9A:2B:D9:DF:B5:63:1A:86:C0:04:0D:B2:C6:42:B6:2A:C3:23:F2:5A:F4:D1:CD:6B:0D:6A"]
+        }
+      }]);
 });
 
 app.use("*", protectWithApiKey);
