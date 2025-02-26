@@ -17,7 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
-app.use("/.well-known", express.static(".well-known"));
+app.get("/.well-known/assetlinks.json", (req, res) => {
+    res.status(200).sendFile(__dirname + "/.well-known/assetlinks.json");
+});
 
 app.use("*", protectWithApiKey);
 
